@@ -9,6 +9,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "products")
 @Data
@@ -19,12 +25,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+    @NotNull(message = "Поле title не должно быть пустым")
     @Column(name = "title")
     private String title;
+    @NotNull(message = "Добавьте описание")
     @Column(name = "description", columnDefinition = "text")
     private String description;
     @Column(name = "price")
+    @Min(1)
+    @Max(10000)
     private int price;
+    @NotBlank
     @Column(name = "location")
     private String location;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")

@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -18,9 +19,12 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
     @Column(name = "email", unique = true)
+    @Email
     private String email;
     @Column(name = "phone")
+    @Pattern(regexp = "^\\d{10}$", message = "Введите корректный номер. Например,9235325531)")
     private String phone;
+    @NotNull(message = "Введите имя")
     @Column(name = "name")
     private String name;
     @Column(name = "active")
@@ -29,6 +33,8 @@ public class User implements UserDetails {
     @JoinColumn(name = "image_id")
     private Image avatar;
     @Column(name = "password", length = 1000)
+    @Min(3)
+    @Max(15)
     private String password;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
