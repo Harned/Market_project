@@ -27,13 +27,13 @@ public class Product {
     private int price;
     @Column(name = "location")
     private String location;
-    @Column(name = "person")
-    private String person;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
     private Long previewImageId;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn
+    private User user;
     private LocalDateTime dateOfCreated;
-
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();

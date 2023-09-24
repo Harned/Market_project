@@ -13,11 +13,7 @@
 <b>Описание: </b>${product.description}<br>
 <b>Цена: </b>${product.price}<br>
 <b>Город: </b>${product.location}<br>
-<b>Продавец: </b>${product.person}<br>
-<hr>
-<form action="/product/delete/${product.id}" method="post">
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Удалить товар"/>
-</form>
+<b>Продавец: </b>${product.user.name}<br>
+<b>Номер телефона: </b>${product.user.phone}<br>
 </body>
 </html>
