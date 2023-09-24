@@ -19,12 +19,16 @@
 </#list>
 <hr>
 <h3>Создать новый товар</h3>
-<form action="/product/create" method="post">
+<form action="/product/create" method="post" enctype="multipart/form-data">
     Название объявления: <input type="text" name="title"/><br><br>
     Описание объявления: <input type="text" name="description"/><br><br>
     Цена: <input type="number" name="price"/><br><br>
     Город: <input type="text" name="location"/><br><br>
-    Имя: <input type="text" name="person"/><br><br>
+    Продавец: <input type="text" name="person"/><br><br>
+    1 фотография: <input type="file" name="file1"/><br><br>
+    2 фотография: <input type="file" name="file2"/><br><br>
+    3 фотография: <input type="file" name="file3"/><br><br>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Добавить товар"/>
 </form>
 </body>
