@@ -1,6 +1,6 @@
 package com.example.market.controllers;
 
-import com.example.market.models.Product;
+import com.example.market.dto.ProductDTO;
 import com.example.market.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,9 +28,9 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String productInfo(@PathVariable Long id, Model model) {
-        Product product = productService.getProductById(id);
-        model.addAttribute("product", product);
-        model.addAttribute("images", product.getImages());
+        ProductDTO productDTO = productService.getProductById(id);
+        model.addAttribute("product", productDTO);
+        model.addAttribute("images", productDTO.getImageDTOS());
         return "product-info";
     }
 
@@ -38,8 +38,8 @@ public class ProductController {
     public String createProduct(@RequestParam("file1") MultipartFile file1,
                                 @RequestParam("file2") MultipartFile file2,
                                 @RequestParam("file3") MultipartFile file3,
-                                Product product, Principal principal) throws IOException {
-        productService.saveProduct(principal, product, file1, file2, file3);
+                                ProductDTO productDTO, Principal principal) throws IOException {
+        productService.saveProduct(principal, productDTO, file1, file2, file3);
         return "redirect:/";
     }
 

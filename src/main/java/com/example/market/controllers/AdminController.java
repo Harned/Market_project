@@ -1,7 +1,7 @@
 package com.example.market.controllers;
 
-import com.example.market.models.User;
-import com.example.market.models.enums.Role;
+import com.example.market.dto.UserDTO;
+import com.example.market.enums.Role;
 import com.example.market.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
@@ -22,7 +23,11 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute("users", userService.list());
+        ArrayList<UserDTO> dtos = new ArrayList<>();
+        for(model : userService.list()) {
+            dtos.add(co);
+        }
+        model.addAttribute("users", dtos);
         return "admin";
     }
 
@@ -33,15 +38,15 @@ public class AdminController {
     }
 
     @GetMapping("/admin/user/edit/{user}")
-    public String userEdit(@PathVariable("user") User user, Model model) {
-        model.addAttribute("user", user);
+    public String userEdit(@PathVariable("user") UserDTO userDTO, Model model) {
+        model.addAttribute("user", userDTO);
         model.addAttribute("roles", Role.values());
         return "user-edit";
     }
 
     @PostMapping("/admin/user/edit")
-    public String userEdit(@RequestParam("userId") User user, @RequestParam Map<String, String> form) {
-        userService.changeUserRoles(user, form);
+    public String userEdit(@RequestParam("userDTO") UserDTO userDTO, @RequestParam Map<String, String> form) {
+        userService.changeUserRoles(userDTO, form);
         return "redirect:/admin";
     }
 }

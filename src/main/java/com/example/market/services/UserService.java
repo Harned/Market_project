@@ -1,7 +1,7 @@
 package com.example.market.services;
 
-import com.example.market.models.User;
-import com.example.market.models.enums.Role;
+import com.example.market.entity.User;
+import com.example.market.entity.enums.Role;
 import com.example.market.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

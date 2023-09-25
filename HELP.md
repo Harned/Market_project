@@ -10,7 +10,7 @@ For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.1.4/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.1.4/maven-plugin/reference/html/#build-image)
+* [Create an OCI imageDTO](https://docs.spring.io/spring-boot/docs/3.1.4/maven-plugin/reference/html/#build-imageDTO)
 * [Spring Web](https://docs.spring.io/spring-boot/docs/3.1.4/reference/htmlsingle/index.html#web)
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.1.4/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
 * [Apache Freemarker](https://docs.spring.io/spring-boot/docs/3.1.4/reference/htmlsingle/index.html#web.servlet.spring-mvc.template-engines)

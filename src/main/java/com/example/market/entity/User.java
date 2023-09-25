@@ -1,6 +1,7 @@
-package com.example.market.models;
+package com.example.market.entity;
 
-import com.example.market.models.enums.Role;
+import com.example.market.enums.Role;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 @Data
+@AllArgsConstructor
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +43,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    private List<Product> products = new ArrayList<>();
+    private List<Product> productEntities = new ArrayList<>();
     private LocalDateTime dateOfCreated;
 
     @PrePersist

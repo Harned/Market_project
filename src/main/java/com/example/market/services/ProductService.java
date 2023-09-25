@@ -1,8 +1,8 @@
 package com.example.market.services;
 
-import com.example.market.models.Image;
-import com.example.market.models.Product;
-import com.example.market.models.User;
+import com.example.market.entity.Image;
+import com.example.market.entity.Product;
+import com.example.market.entity.User;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;

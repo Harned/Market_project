@@ -1,7 +1,9 @@
 package com.example.market.controllers;
 
-import com.example.market.models.User;
+import com.example.market.converters.UserConverter;
+import com.example.market.dto.UserDTO;
 import com.example.market.services.UserService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final UserConverter userConverter;
 
     @GetMapping("/login")
     public String login() {
@@ -25,18 +28,18 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String createUser(User user, Model model) {
-        if (!userService.createUser(user)) {
-            model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + "уже существует");
+    public String createUser(UserDTO userDTO, Model model) {
+        if (!userService.createUser(userConverter.dtoToModel(userDTO))) {
+            model.addAttribute("errorMessage", "Пользователь с email: " + userDTO.getEmail() + "уже существует");
             return "registration";
         }
         return "redirect:/login";
     }
 
     @GetMapping("/user/{user}")
-    public String userInfo(@PathVariable("user") User user, Model model) {
-        model.addAttribute("user", user);
-        model.addAttribute("products", user.getProducts());
+    public String userInfo(@PathVariable("user") UserDTO userDTO, Model model) {
+        model.addAttribute("user", userDTO);
+        model.addAttribute("products", userDTO.getProductDTOS());
         return "user-info";
     }
 

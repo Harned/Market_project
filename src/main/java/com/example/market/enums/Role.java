@@ -1,4 +1,4 @@
-package com.example.market.models.enums;
+package com.example.market.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

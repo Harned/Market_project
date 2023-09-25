@@ -1,6 +1,6 @@
 package com.example.market.controllers;
 
-import com.example.market.models.Image;
+import com.example.market.dto.ImageDTO;
 import com.example.market.repositories.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -18,11 +18,11 @@ public class ImageController {
     private final ImageRepository imageRepository;
     @GetMapping("/images/{id}")
     private ResponseEntity<?> getImageById(@PathVariable Long id) {
-        Image image = imageRepository.findById(id).orElse(null);
+        ImageDTO imageDTO = imageRepository.findById(id).orElse(null);
         return ResponseEntity.ok()
-                .header("fileName", image.getOriginalFileName())
-                .contentType(MediaType.valueOf(image.getContentType()))
-                .contentLength(image.getSize())
-                .body(new InputStreamResource(new ByteArrayInputStream(image.getBytes())));
+                .header("fileName", imageDTO.getOriginalFileName())
+                .contentType(MediaType.valueOf(imageDTO.getContentType()))
+                .contentLength(imageDTO.getSize())
+                .body(new InputStreamResource(new ByteArrayInputStream(imageDTO.getBytes())));
     }
 }

@@ -5,13 +5,13 @@
 </head>
 <body>
 <h1>Market</h1><hr>
-<h3>Подробная информация о пользователе ${user.name}</h3>
-<b>Номер телефона: </b> ${user.phone}<br>
-<b>Email: </b> ${user.email}<br>
-<h4>Товары пользователя ${user.name}</h4>
-<#list products as product>
+<h3>Подробная информация о пользователе ${userDTO.name}</h3>
+<b>Номер телефона: </b> ${userDTO.phone}<br>
+<b>Email: </b> ${userDTO.email}<br>
+<h4>Товары пользователя ${userDTO.name}</h4>
+<#list products as productDTO>
     <div>
-        <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+        <p><b>${productDTO.title}</b> ${productDTO.price} руб. | <a href="/productDTO/${productDTO.id}">Подробнее...</a></p>
     </div>
 <#else>
     <h3>Товаров нет</h3>
