@@ -5,13 +5,13 @@
 </head>
 <body>
 <h1>Market</h1>
-<#if user.email??>
-    <h3>Имя пользователя: <i>${user.name}</i></h3>
+<#if userDTO.email??>
+    <h3>Имя пользователя: <i>${userDTO.name}</i></h3>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Выйти"/>
     </form>
-    <#if user.isAdmin()>
+    <#if userDTO.isAdmin()>
         <a href="/admin">Панель администратора</a>
     </#if>
 <#else>
@@ -23,15 +23,15 @@
     Поиск по названию объявления: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>
 </form>
-<#list products as product>
+<#list products as productDTO>
     <div>
-        <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>
+        <p><b>${productDTO.title}</b> ${productDTO.price} руб. | <a href="/product/${productDTO.id}">Подробнее...</a></p>
     </div>
     <#else>
     <h3>Товаров нет</h3>
 </#list>
 <hr>
-<#if user.email??>
+<#if userDTO.email??>
     <hr>
     <h3>Создать новый товар</h3>
     <form action="/product/create" method="post" enctype="multipart/form-data">

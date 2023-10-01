@@ -9,11 +9,11 @@
 <#list images as img>
     <img src="/images/${img.id}" height="60px"/><br><br>
 </#list>
-<b>Название товара: </b>${product.title}<br>
-<b>Описание: </b>${product.description}<br>
-<b>Цена: </b>${product.price}<br>
-<b>Город: </b>${product.location}<br>
-<b>Продавец: </b>${product.user.name}<br>
-<b>Номер телефона: </b>${product.user.phone}<br>
+<b>Название товара: </b>${productDTO.title}<br>
+<b>Описание: </b>${productDTO.description}<br>
+<b>Цена: </b>${productDTO.price}<br>
+<b>Город: </b>${productDTO.location}<br>
+<b>Продавец: </b>${productDTO.user.name}<br>
+<b>Номер телефона: </b>${productDTO.user.phone}<br>
 </body>
 </html>
